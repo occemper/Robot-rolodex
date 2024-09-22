@@ -6,7 +6,7 @@ import './App.css'
 
 class App extends Component {
   state = {
-    count: 0,
+    count: {first: 0, second: 23},
     pount: 12
   }
   render() {
@@ -22,8 +22,13 @@ class App extends Component {
         </div>
         <h1>Vite + React</h1>
         <div className="card">
-          <button onClick={() => this.setState({ count: this.state.count + 12 })}>
-            count is {this.state.count}
+          <button
+            onClick={() =>{
+              this.setState({ count: {first: this.state.count.first + 12, second: 23} });
+              console.log(this.state);              
+            }}
+          >
+            count is {this.state.count.first}; {this.state.count.second}
           </button>
           <p>
             Edit <code>src/App.jsx</code> and save to test HMR{this.state.pount}
