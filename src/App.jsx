@@ -6,26 +6,24 @@ import './App.css'
 
 class App extends Component {
   state = {
-    monsters: [
-      {
-        id: '1q123',
-        name: 'Yago'
-      },
-      {
-        id: '1q123ghfgh',
-        name: 'Bortolomeo'
-      },
-      {
-        id: '1q15y43',
-        name: 'Frank'
-      },
-      {
-        id: '1dfgq13',
-        name: 'Linda'
-      },
-    ]
+    monsters: [],
+  };
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json()
+        .then((users) => this.setState(
+          () => {
+            return { monsters: users };
+          },
+          () => {
+            console.log(this.state);
+          }
+        ))
+      );
 
   }
+
   render() {
     return (
       <div className='App'>
@@ -33,7 +31,7 @@ class App extends Component {
           this.state.monsters.map((monster) => {
             return <div key={monster.id}>
               <h1>{monster.name}</h1>
-              </div>
+            </div>
           })
         }
       </div>
