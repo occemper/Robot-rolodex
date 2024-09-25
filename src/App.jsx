@@ -7,6 +7,7 @@ import './App.css'
 class App extends Component {
   state = {
     monsters: [],
+    filteredMonsters: []
   };
 
 
@@ -16,7 +17,10 @@ class App extends Component {
       .then((response) => response.json()
         .then((users) => this.setState(
           () => {
-            return { monsters: users };
+            return {
+              monsters: users,
+              filteredMonsters: users
+            };
           },
           () => {
             console.log(this.state);
@@ -32,19 +36,19 @@ class App extends Component {
         <input className='search-box' type='search'
           placeholder='search monsters'
           onChange={(event) => {
-            this.setState(
-              () => {
-               return{
-                 monsters: this.state.monsters
-                 .filter(x => x.name
+            const filteredMonsters = this.state.monsters
+              .filter(x =>
+                x.name
                   .toUpperCase()
-                  .startsWith(event.target.value.toUpperCase()))
-               }
-              }
-            )
+                  .includes(event.target.value.toUpperCase())
+              )
+
+            this.setState(() => {
+              return { filteredMonsters: filteredMonsters }
+            })
           }} />
         {
-          this.state.monsters.map((monster) => {
+          this.state.filteredMonsters.map((monster) => {
             return <div key={monster.id}>
               <h1>{monster.name}</h1>
             </div>
