@@ -9,6 +9,8 @@ class App extends Component {
     monsters: [],
   };
 
+
+
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json()
@@ -27,6 +29,20 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <input className='search-box' type='search'
+          placeholder='search monsters'
+          onChange={(event) => {
+            this.setState(
+              () => {
+               return{
+                 monsters: this.state.monsters
+                 .filter(x => x.name
+                  .toUpperCase()
+                  .startsWith(event.target.value.toUpperCase()))
+               }
+              }
+            )
+          }} />
         {
           this.state.monsters.map((monster) => {
             return <div key={monster.id}>
