@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import CardList from './components/card-list/card-list.component'
+import SearchBox from './components/search-box/search-box.component'
 
 class App extends Component {
   state = {
@@ -40,7 +41,7 @@ class App extends Component {
 
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
-    
+
     const filteredMonsters = monsters
       .filter(x =>
         x.name
@@ -50,15 +51,11 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <input className='search-box'
-          type='search'
-          placeholder='search monsters'
-          onChange={onSearchChange}
-        />
-        {
-               
-        }
-        <CardList monsters={filteredMonsters}/>
+        <SearchBox
+          className={'search-box'}
+          onChangeHandler={onSearchChange}
+          placeholder={'search monsters'} />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
