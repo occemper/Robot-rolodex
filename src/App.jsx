@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Component } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import CardList from './components/card-list/card-list.component'
 import SearchBox from './components/search-box/search-box.component'
@@ -11,8 +10,6 @@ class App extends Component {
     monsters: [],
     searchField: ''
   };
-
-
 
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -52,7 +49,7 @@ class App extends Component {
     return (
       <div className='App'>
         <SearchBox
-          className={'search-box'}
+          className={'monsters-search-box'}
           onChangeHandler={onSearchChange}
           placeholder={'search monsters'} />
         <CardList monsters={filteredMonsters} />
