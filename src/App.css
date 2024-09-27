@@ -11,3 +11,11 @@ body {
       rgb(1, 78, 78) 100%);
   text-align: center;
 }
+
+.app-title{
+  margin-top: 60px;
+  margin-bottom: 50px;
+  font-size: 100px;
+  color: aqua;
+  font-family: "Bigelow Rules", serif;
+}
