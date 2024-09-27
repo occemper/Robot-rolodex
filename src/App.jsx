@@ -7,7 +7,7 @@ import SearchBox from './components/search-box/search-box.component'
 
 class App extends Component {
   state = {
-    monsters: [],
+    robots: [],
     searchField: ''
   };
 
@@ -17,7 +17,7 @@ class App extends Component {
         .then((users) => this.setState(
           () => {
             return {
-              monsters: users,
+              robots: users,
             };
           }
         ))
@@ -36,10 +36,10 @@ class App extends Component {
   render() {
 
 
-    const { monsters, searchField } = this.state;
+    const { robots: robots, searchField } = this.state;
     const { onSearchChange } = this;
 
-    const filteredMonsters = monsters
+    const filteredRobots = robots
       .filter(x =>
         x.name
           .toLocaleUpperCase()
@@ -49,10 +49,10 @@ class App extends Component {
     return (
       <div className='App'>
         <SearchBox
-          className={'monsters-search-box'}
+          className={'robots-search-box'}
           onChangeHandler={onSearchChange}
-          placeholder={'search monsters'} />
-        <CardList monsters={filteredMonsters} />
+          placeholder={'search robots'} />
+        <CardList robots={filteredRobots} />
       </div>
     );
   }
