@@ -1,20 +1,30 @@
 import { useState } from 'react'
-import { Component } from 'react'
+
 
 import './App.css'
 import CardList from './components/card-list/card-list.component'
 import SearchBox from './components/search-box/search-box.component'
 
 const App = () => {
+  const [searchField, setSearchField] = useState('');
+  console.log(searchField);
+  
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleUpperCase();
+    setSearchField(searchFieldString);
+  }
 
   return (
     <div className='App'>
       <h1 className='app-title'>Robots Rolodex</h1>
 
-      {/* <SearchBox
+      <SearchBox
         className={'robots-search-box'}
         onChangeHandler={onSearchChange}
         placeholder={'search robots'} />
+
+      {/*
       <CardList robots={filteredRobots} /> */}
     </div>
   )
@@ -40,13 +50,7 @@ const App = () => {
 
 //   }
 
-//   onSearchChange = (event) => {
-//     const searchField = event.target.value.toLocaleUpperCase();
-//     this.setState(
-//       () => {
-//         return { searchField };
-//       });
-//   }
+
 
 //   render() {
 
