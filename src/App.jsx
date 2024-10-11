@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 import './App.css'
@@ -7,13 +7,27 @@ import SearchBox from './components/search-box/search-box.component'
 
 const App = () => {
   const [searchField, setSearchField] = useState('');
-  console.log(searchField);
-  
+  const [robots, setRobots] = useState([])
+
+  console.log('render');
+
+
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => response.json())
+    .then((users) => setRobots(users)); //infinite loop
+
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleUpperCase();
     setSearchField(searchFieldString);
   }
+
+  const filteredRobots = robots
+    .filter(x =>
+      x.name
+        .toLocaleUpperCase()
+        .includes(searchField)
+    );
 
   return (
     <div className='App'>
@@ -23,9 +37,8 @@ const App = () => {
         className={'robots-search-box'}
         onChangeHandler={onSearchChange}
         placeholder={'search robots'} />
+      <CardList robots={filteredRobots} />
 
-      {/*
-      <CardList robots={filteredRobots} /> */}
     </div>
   )
 }
@@ -36,17 +49,7 @@ const App = () => {
 //     searchField: ''
 //   };
 
-//   componentDidMount() {
-//     fetch('https://jsonplaceholder.typicode.com/users')
-//       .then((response) => response.json()
-//         .then((users) => this.setState(
-//           () => {
-//             return {
-//               robots: users,
-//             };
-//           }
-//         ))
-//       );
+
 
 //   }
 
@@ -58,12 +61,7 @@ const App = () => {
 //     const { robots: robots, searchField } = this.state;
 //     const { onSearchChange } = this;
 
-//     const filteredRobots = robots
-//       .filter(x =>
-//         x.name
-//           .toLocaleUpperCase()
-//           .includes(searchField)
-//       );
+//     
 
 //     return (
 //       <div className='App'>
