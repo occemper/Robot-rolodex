@@ -7,27 +7,31 @@ import SearchBox from './components/search-box/search-box.component'
 
 const App = () => {
   const [searchField, setSearchField] = useState('');
-  const [robots, setRobots] = useState([])
+  const [robots, setRobots] = useState([]);
+  const [filteredRobots, setFilteredRobots] = useState(robots);
 
-  console.log('render');
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => setRobots(users));
+    
+  }, [])
 
+  useEffect(() => {
+    const newFilteredRobots = robots
+      .filter(x =>
+        x.name
+          .toLocaleUpperCase()
+          .includes(searchField)
+      );
 
-  fetch('https://jsonplaceholder.typicode.com/users')
-    .then((response) => response.json())
-    .then((users) => setRobots(users)); //infinite loop
-
+    setFilteredRobots(newFilteredRobots)
+  }, [robots, searchField])
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleUpperCase();
     setSearchField(searchFieldString);
   }
-
-  const filteredRobots = robots
-    .filter(x =>
-      x.name
-        .toLocaleUpperCase()
-        .includes(searchField)
-    );
 
   return (
     <div className='App'>
