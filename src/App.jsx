@@ -10,11 +10,14 @@ const App = () => {
   const [robots, setRobots] = useState([]);
   const [filteredRobots, setFilteredRobots] = useState(robots);
 
+  console.log('render');
+
+
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => setRobots(users));
-    
+
   }, [])
 
   useEffect(() => {
