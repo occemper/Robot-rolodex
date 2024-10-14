@@ -4,7 +4,7 @@ const Card = ({ robot }) => {
     const { id, name, email } = robot;
 
     return (
-        <div className="card-container" key={id} >
+        <div className="card-container" >
             <img
                 src={`https://robohash.org/12${id}?size=180x180`}
                 alt={`robot ${name}`} />

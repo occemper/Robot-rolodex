@@ -4,7 +4,7 @@ import Card from "../card/card.component";
 const CardList = ({ robots }) => (
     <div className='card-list'>
         {robots.map((robot) => {
-            return <Card robot={robot} />;
+            return <Card key={robot.id} robot={robot} />;
         })}
     </div >
 )

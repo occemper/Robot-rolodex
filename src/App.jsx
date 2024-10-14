@@ -10,9 +10,6 @@ const App = () => {
   const [robots, setRobots] = useState([]);
   const [filteredRobots, setFilteredRobots] = useState(robots);
 
-  console.log('render');
-
-
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
@@ -49,39 +46,5 @@ const App = () => {
     </div>
   )
 }
-
-// class App extends Component {
-//   state = {
-//     robots: [],
-//     searchField: ''
-//   };
-
-
-
-//   }
-
-
-
-//   render() {
-
-
-//     const { robots: robots, searchField } = this.state;
-//     const { onSearchChange } = this;
-
-//     
-
-//     return (
-//       <div className='App'>
-//         <h1 className='app-title'>Robots Rolodex</h1>
-
-//         <SearchBox
-//           className={'robots-search-box'}
-//           onChangeHandler={onSearchChange}
-//           placeholder={'search robots'} />
-//         <CardList robots={filteredRobots} />
-//       </div>
-//     );
-//   }
-// }
 
 export default App
